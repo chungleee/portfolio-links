@@ -1,14 +1,18 @@
 @use "../../../app/variables";
 
-.button_primary {
+%button {
 	min-width: 227px;
 	min-height: 46px;
-	color: variables.$white;
-	background-color: variables.$purple;
 	border-style: none;
 	border-radius: 0.5rem;
 	font-weight: 700;
 	cursor: pointer;
+}
+
+.button_primary {
+	@extend %button;
+	color: variables.$white;
+	background-color: variables.$purple;
 
 	&:hover {
 		background-color: variables.$purple-hover;
@@ -16,5 +20,24 @@
 
 	&:disabled {
 		background-color: variables.$purple-light;
+		cursor: not-allowed;
+	}
+}
+
+.button_secondary {
+	@extend %button;
+	border: 1px solid variables.$purple;
+	background-color: variables.$light-grey;
+	color: variables.$purple;
+
+	&:hover {
+		background-color: variables.$purple-light;
+	}
+
+	&:disabled {
+		background-color: variables.$purple-light;
+		border-color: variables.$purple-hover;
+		color: variables.$purple-hover;
+		cursor: not-allowed;
 	}
 }
