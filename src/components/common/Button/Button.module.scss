@@ -1,0 +1,20 @@
+@use "../../../app/variables";
+
+.button_primary {
+	min-width: 227px;
+	min-height: 46px;
+	color: variables.$white;
+	background-color: variables.$purple;
+	border-style: none;
+	border-radius: 0.5rem;
+	font-weight: 700;
+	cursor: pointer;
+
+	&:hover {
+		background-color: variables.$purple-hover;
+	}
+
+	&:disabled {
+		background-color: variables.$purple-light;
+	}
+}
