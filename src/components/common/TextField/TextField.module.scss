@@ -1,0 +1,28 @@
+@use "../../../app/variables";
+
+.textfield {
+	display: flex;
+	align-items: center;
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	border: 1px solid variables.$med-grey;
+	border-radius: 8px;
+
+	&_icon {
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
+	}
+
+	input {
+		border: none;
+		width: 100%;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&:focus-within {
+		border-color: variables.$purple-hover;
+	}
+}
