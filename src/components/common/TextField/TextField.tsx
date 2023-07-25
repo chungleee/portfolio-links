@@ -1,23 +1,20 @@
 import { FunctionComponent } from "react";
-import { UseFormRegister, FieldPath } from "react-hook-form";
+import { FieldPath, Control } from "react-hook-form";
 import { FiLink } from "react-icons/fi";
 import styles from "./TextField.module.scss";
 import { Inputs } from "@/app/page";
 
 interface TextfieldProps {
-	defaultValue?: string;
-	register: UseFormRegister<Inputs>;
-	inputName: FieldPath<Inputs>;
+	control: Control<Inputs>;
+	name: FieldPath<Inputs>;
 }
 
-const TextField: FunctionComponent<TextfieldProps> = ({
-	register,
-	inputName,
-}) => {
+const TextField: FunctionComponent<TextfieldProps> = ({ control, name }) => {
+	const { register } = control;
 	return (
 		<div className={styles.textfield}>
 			<FiLink className={styles.textfield_icon} />
-			<input {...register(inputName)} type='text' />
+			<input {...register(name)} />
 		</div>
 	);
 };
