@@ -5,12 +5,15 @@
 	align-items: center;
 	padding-top: 0.75rem;
 	padding-bottom: 0.75rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
 	border: 1px solid variables.$med-grey;
 	border-radius: 8px;
 
 	&_icon {
-		margin-left: 0.5rem;
-		margin-right: 0.5rem;
+		margin-right: 1rem;
+		min-width: 1em;
+		min-height: 1em;
 	}
 
 	input {
@@ -24,5 +27,15 @@
 
 	&:focus-within {
 		border-color: variables.$purple;
+	}
+}
+
+.error {
+	border-color: variables.$red;
+
+	&_message {
+		white-space: nowrap;
+		color: variables.$red;
+		line-height: 150%;
 	}
 }
