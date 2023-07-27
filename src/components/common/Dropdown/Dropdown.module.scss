@@ -1,0 +1,55 @@
+@use "../../../app/variables";
+
+.dropdown {
+	border: 1px solid variables.$med-grey;
+	border-radius: 8px;
+	padding: 0.75rem 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+
+	&__left_icon {
+		margin-right: 1rem;
+	}
+
+	span {
+		margin-right: auto;
+	}
+
+	&__down_arrow {
+		color: variables.$purple;
+	}
+
+	&__option_list {
+		border-radius: 8px;
+		border: 1px solid variables.$med-grey;
+		padding-left: 0.75rem;
+		padding-right: 0.75rem;
+		margin-top: 0.5rem;
+
+		option {
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+			border-bottom: 1px solid variables.$med-grey;
+
+			&:hover {
+				color: variables.$purple;
+				cursor: pointer;
+			}
+
+			&:focus {
+				color: variables.$purple;
+				cursor: pointer;
+			}
+		}
+
+		option:last-of-type {
+			border-bottom: none;
+		}
+	}
+}
+
+.active {
+	border-color: variables.$purple;
+}
