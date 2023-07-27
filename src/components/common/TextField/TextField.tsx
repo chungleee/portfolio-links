@@ -1,14 +1,15 @@
 import { FunctionComponent } from "react";
 import { FieldPath, Control, FieldError } from "react-hook-form";
-import { FiLink } from "react-icons/fi";
 import styles from "./TextField.module.scss";
 import { IFormInputs } from "@/app/page";
+import Icon, { IIconProps } from "../Icons/Icon";
 
 interface ITextfieldProps {
 	control: Control<IFormInputs>;
 	name: FieldPath<IFormInputs>;
 	error: FieldError | undefined;
 	placeholder?: string;
+	iconVariant: "link" | "mail" | "lock";
 }
 
 const TextField: FunctionComponent<ITextfieldProps> = ({
@@ -16,10 +17,9 @@ const TextField: FunctionComponent<ITextfieldProps> = ({
 	name,
 	error,
 	placeholder,
+	iconVariant,
 }) => {
 	const { register } = control;
-
-	console.log("error: ", error);
 
 	return (
 		<div
@@ -27,7 +27,7 @@ const TextField: FunctionComponent<ITextfieldProps> = ({
 				error ? `${styles.textfield} ${styles.error}` : styles.textfield
 			}
 		>
-			<FiLink className={styles.textfield_icon} />
+			<Icon variant={iconVariant} className={styles.textfield_icon} />
 			<input {...register(name)} placeholder={placeholder} />
 			{error?.message && (
 				<small className={styles.error_message}>{error.message}</small>
