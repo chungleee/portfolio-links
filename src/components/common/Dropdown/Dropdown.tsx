@@ -1,51 +1,84 @@
-import { useState } from "react";
+import { FunctionComponent, useState } from "react";
 import styles from "./Dropdown.module.scss";
 import Icon from "../Icons/Icon";
+import { Control, FieldPath, UseFormSetValue, useForm } from "react-hook-form";
+import { IFormInputs } from "@/app/page";
 
-const list = ["item 1", "item 2", "item 3"];
+interface IDropdownProps {
+	control: Control<IFormInputs>;
+	name: FieldPath<IFormInputs>;
+	optionList: Array<string>;
+	setValueHandler: UseFormSetValue<IFormInputs>;
+}
 
-const Dropdown = () => {
-	const [optionList] = useState(list);
+const Dropdown: FunctionComponent<IDropdownProps> = ({
+	control,
+	name,
+	optionList,
+	setValueHandler,
+}) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [dropdownValue, setDropdownValue] = useState("");
+	const { register } = control;
 
 	const toggleDropdown = () => {
 		setIsOpen(!isOpen);
 	};
 
 	return (
-		<div>
-			<a
-				role='listbox'
+		<>
+			<div
 				tabIndex={0}
-				onClick={toggleDropdown}
 				onKeyDown={(event) => {
 					if (event.key === "Enter") {
 						toggleDropdown();
 					}
 				}}
 				className={
-					isOpen ? `${styles.dropdown} ${styles.active}` : styles.dropdown
+					isOpen ? `${styles.dropdown} ${styles.active}` : `${styles.dropdown}`
 				}
+				onClick={toggleDropdown}
 			>
 				<Icon className={styles.dropdown__left_icon} variant='link' />
-				<span>{optionList[0]}</span>
+				<input
+					{...register(name)}
+					tabIndex={-1}
+					value={optionList[0] || dropdownValue}
+					type='text'
+					readOnly={true}
+				/>
 				<Icon
-					className={styles.dropdown__down_arrow}
+					className={styles.dropdown__arrow}
 					variant={isOpen ? "up-arrow" : "down-arrow"}
 				/>
-			</a>
+			</div>
 			{isOpen ? (
 				<div className={styles.dropdown__option_list}>
 					{optionList.map((option) => {
 						return (
-							<option tabIndex={0} value={option}>
+							<option
+								key={option}
+								tabIndex={0}
+								onKeyDown={(event) => {
+									if (event.key === "Enter") {
+										setValueHandler("dropdown", option);
+										setDropdownValue(option);
+										toggleDropdown();
+									}
+								}}
+								onClick={() => {
+									setValueHandler("dropdown", option);
+									setDropdownValue(option);
+									toggleDropdown();
+								}}
+							>
 								{option}
 							</option>
 						);
 					})}
 				</div>
 			) : null}
-		</div>
+		</>
 	);
 };
 
