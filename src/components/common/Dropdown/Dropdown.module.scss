@@ -13,11 +13,16 @@
 		margin-right: 1rem;
 	}
 
-	span {
-		margin-right: auto;
+	input {
+		margin-right: 1rem;
+		margin-left: 1rem;
+		width: 100%;
+		border: none;
+		cursor: pointer;
+		outline: none;
 	}
 
-	&__down_arrow {
+	&__arrow {
 		color: variables.$purple;
 	}
 
