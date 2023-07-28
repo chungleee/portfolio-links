@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { FieldPath, Control, FieldError } from "react-hook-form";
 import styles from "./TextField.module.scss";
 import { IFormInputs } from "@/app/page";
-import Icon, { IIconProps } from "../Icons/Icon";
+import Icon from "../Icons/Icon";
 
 interface ITextfieldProps {
 	control: Control<IFormInputs>;
@@ -10,6 +10,7 @@ interface ITextfieldProps {
 	error: FieldError | undefined;
 	placeholder?: string;
 	iconVariant: "link" | "mail" | "lock";
+	type?: "text" | string;
 }
 
 const TextField: FunctionComponent<ITextfieldProps> = ({
@@ -18,6 +19,7 @@ const TextField: FunctionComponent<ITextfieldProps> = ({
 	error,
 	placeholder,
 	iconVariant,
+	type,
 }) => {
 	const { register } = control;
 
@@ -28,7 +30,7 @@ const TextField: FunctionComponent<ITextfieldProps> = ({
 			}
 		>
 			<Icon variant={iconVariant} className={styles.textfield_icon} />
-			<input {...register(name)} placeholder={placeholder} />
+			<input type={type} {...register(name)} placeholder={placeholder} />
 			{error?.message && (
 				<small className={styles.error_message}>{error.message}</small>
 			)}
