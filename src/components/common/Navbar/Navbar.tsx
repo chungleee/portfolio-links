@@ -28,6 +28,7 @@ const Navbar: FunctionComponent<INavbarProps> = ({ navigationLinks }) => {
 								: `${styles.navbar__link}`
 						}
 						href={link.href}
+						key={link.name}
 					>
 						<Icon variant='link' /> {link.name}
 					</Link>
