@@ -22,7 +22,7 @@ dependencies:
     version: 2.0.0
   next:
     specifier: 13.4.11
-    version: 13.4.11(react-dom@18.2.0)(react@18.2.0)(sass@1.64.0)
+    version: 13.4.11(react-dom@18.2.0)(react@18.2.0)(sass@1.64.2)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -44,8 +44,8 @@ dependencies:
 
 devDependencies:
   sass:
-    specifier: ^1.64.0
-    version: 1.64.0
+    specifier: ^1.64.2
+    version: 1.64.2
 
 packages:
 
@@ -145,7 +145,7 @@ packages:
   /@swc/helpers@0.5.1:
     resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
-      tslib: 2.6.0
+      tslib: 2.6.1
     dev: false
 
   /@types/node@20.4.2:
@@ -198,8 +198,8 @@ packages:
       streamsearch: 1.1.0
     dev: false
 
-  /caniuse-lite@1.0.30001517:
-    resolution: {integrity: sha512-Vdhm5S11DaFVLlyiKu4hiUTkpZu+y1KA/rZZqVQfOD5YdDT/eQKlkt7NaE0WGOFgX32diqt9MiP9CAiFeRklaA==}
+  /caniuse-lite@1.0.30001518:
+    resolution: {integrity: sha512-rup09/e3I0BKjncL+FesTayKtPrdwKhUufQFd3riFw1hHg8JmIFoInYfB102cFcY/pPgGmdyl/iy+jgiDi2vdA==}
     dev: false
 
   /chokidar@3.5.3:
@@ -296,7 +296,7 @@ packages:
     hasBin: true
     dev: false
 
-  /next@13.4.11(react-dom@18.2.0)(react@18.2.0)(sass@1.64.0):
+  /next@13.4.11(react-dom@18.2.0)(react@18.2.0)(sass@1.64.2):
     resolution: {integrity: sha512-XlJClNF3OPCv99At3BA7TflcF5q2zJAuTcyE4l6f5LWN3Uh8FF4e8PhZfaBk0PKmsKL7yOMGele/UUzbLvLbzw==}
     engines: {node: '>=16.8.0'}
     hasBin: true
@@ -317,11 +317,11 @@ packages:
       '@next/env': 13.4.11
       '@swc/helpers': 0.5.1
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001517
+      caniuse-lite: 1.0.30001518
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      sass: 1.64.0
+      sass: 1.64.2
       styled-jsx: 5.1.1(react@18.2.0)
       watchpack: 2.4.0
       zod: 3.21.4
@@ -401,8 +401,8 @@ packages:
     dependencies:
       picomatch: 2.3.1
 
-  /sass@1.64.0:
-    resolution: {integrity: sha512-m7YtAGmQta9uANIUJwXesAJMSncqH+3INc8kdVXs6eV6GUC8Qu2IYKQSN8PRLgiQfpca697G94klm2leYMxSHw==}
+  /sass@1.64.2:
+    resolution: {integrity: sha512-TnDlfc+CRnUAgLO9D8cQLFu/GIjJIzJCGkE7o4ekIGQOH7T3GetiRR/PsTWJUHhkzcSPrARkPI+gNWn5alCzDg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -448,8 +448,8 @@ packages:
     dependencies:
       is-number: 7.0.0
 
-  /tslib@2.6.0:
-    resolution: {integrity: sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==}
+  /tslib@2.6.1:
+    resolution: {integrity: sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==}
     dev: false
 
   /typescript@5.1.6:
