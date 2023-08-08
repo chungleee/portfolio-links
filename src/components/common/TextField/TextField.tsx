@@ -13,6 +13,7 @@ interface ITextfieldProps {
 
 const TextField = forwardRef<HTMLInputElement, ITextfieldProps>(
 	({ error, iconVariant, type, placeholder, ...props }, ref) => {
+		console.log("error: ", error);
 		return (
 			<div
 				className={
