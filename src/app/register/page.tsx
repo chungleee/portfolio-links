@@ -48,6 +48,8 @@ const Register = () => {
 						name='email'
 						error={errors.email}
 						iconVariant='mail'
+						label='email'
+						placeholder='e.g. alex@email.com'
 					/>
 					<TextField
 						{...register("password")}
@@ -55,6 +57,8 @@ const Register = () => {
 						error={errors.password}
 						iconVariant='lock'
 						type='password'
+						label='password'
+						placeholder='At least 8 characters'
 					/>
 					<TextField
 						{...register("confirm_password")}
@@ -62,6 +66,8 @@ const Register = () => {
 						error={errors.confirm_password}
 						iconVariant='lock'
 						type='password'
+						label='confirm password'
+						placeholder='At least 8 characters'
 					/>
 					<input type='submit' />
 				</form>
