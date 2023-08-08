@@ -1,41 +1,37 @@
-import { FunctionComponent } from "react";
-import { FieldPath, Control, FieldError } from "react-hook-form";
+import { forwardRef } from "react";
+import { FieldError } from "react-hook-form";
 import styles from "./TextField.module.scss";
-import { IFormInputs } from "@/app/page";
 import Icon from "../Icons/Icon";
 
 interface ITextfieldProps {
-	control: Control<IFormInputs>;
-	name: FieldPath<IFormInputs>;
-	error: FieldError | undefined;
+	name: string;
+	label?: string;
+	error?: FieldError;
 	placeholder?: string;
 	iconVariant: "link" | "mail" | "lock";
 	type?: "text" | string;
 }
 
-const TextField: FunctionComponent<ITextfieldProps> = ({
-	control,
-	name,
-	error,
-	placeholder,
-	iconVariant,
-	type,
-}) => {
-	const { register } = control;
-
-	return (
-		<div
-			className={
-				error ? `${styles.textfield} ${styles.error}` : styles.textfield
-			}
-		>
-			<Icon variant={iconVariant} className={styles.textfield_icon} />
-			<input type={type} {...register(name)} placeholder={placeholder} />
-			{error?.message && (
-				<small className={styles.error_message}>{error.message}</small>
-			)}
-		</div>
-	);
-};
+const TextField = forwardRef<HTMLInputElement, ITextfieldProps>(
+	({ error, iconVariant, type, placeholder, label, ...props }, ref) => {
+		console.log("error: ", error);
+		return (
+			<label className={styles.label}>
+				{label}
+				<div
+					className={
+						error ? `${styles.textfield} ${styles.error}` : styles.textfield
+					}
+				>
+					<Icon variant={iconVariant} className={styles.textfield_icon} />
+					<input ref={ref} {...props} type={type} placeholder={placeholder} />
+					{error?.message && (
+						<small className={styles.error_message}>{error.message}</small>
+					)}
+				</div>
+			</label>
+		);
+	}
+);
 
 export default TextField;

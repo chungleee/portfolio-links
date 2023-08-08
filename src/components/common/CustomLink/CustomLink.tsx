@@ -21,7 +21,6 @@ const CustomLink: FunctionComponent<ICustomLinkProps> = ({
 					: `${styles.custom_link}`
 			}
 			href={href}
-			key={name}
 		>
 			<Icon variant='link' /> {name}
 		</Link>
