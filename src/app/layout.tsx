@@ -1,10 +1,6 @@
-import Navbar from "@/components/common/Navbar/Navbar";
+import LogoBanner from "@/components/common/LogoBanner/LogoBanner";
 import "./global.scss";
-
-const navigationLinks = [
-	{ href: "/", name: "home" },
-	{ href: "/about", name: "about" },
-];
+import styles from "./layout.module.scss";
 
 export default function RootLayout({
 	children,
@@ -13,8 +9,8 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body>
-				<Navbar navigationLinks={navigationLinks} />
+			<body className={styles.root_layout}>
+				<LogoBanner />
 				{children}
 			</body>
 		</html>
