@@ -4,15 +4,26 @@ import * as z from "zod";
 import TextField from "@/components/common/TextField/TextField";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const schema = z.object({
-	email: z.string().email({ message: "Invalid email address" }).trim(),
-});
+const schema = z
+	.object({
+		email: z.string().email({ message: "Invalid email address" }).trim(),
+		password: z.string().min(8).max(64),
+		confirm_password: z.string(),
+	})
+	.refine(
+		(data) => {
+			return data.password === data.confirm_password;
+		},
+		{
+			message: "Passwords don't match",
+			path: ["confirm_password"],
+		}
+	);
 
 type TRegisterFormInputs = z.infer<typeof schema>;
 
 const Register = () => {
 	const {
-		control,
 		handleSubmit,
 		register,
 		formState: { errors },
@@ -33,11 +44,26 @@ const Register = () => {
 			<section>
 				<form onSubmit={handleSubmit(onFormSubmit)}>
 					<TextField
-						control={control}
+						{...register("email")}
 						name='email'
 						error={errors.email}
 						iconVariant='mail'
 					/>
+					<TextField
+						{...register("password")}
+						name='password'
+						error={errors.password}
+						iconVariant='lock'
+						type='password'
+					/>
+					<TextField
+						{...register("confirm_password")}
+						name='confirm_password'
+						error={errors.confirm_password}
+						iconVariant='lock'
+						type='password'
+					/>
+					<input type='submit' />
 				</form>
 			</section>
 		</main>
