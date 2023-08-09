@@ -3,7 +3,7 @@ import styles from "./Button.module.scss";
 
 interface Props {
 	children: ReactNode;
-	variant?: "default" | "secondary";
+	variant: "default" | "secondary";
 	disabled?: boolean;
 }
 
