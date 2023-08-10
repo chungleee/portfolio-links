@@ -4,7 +4,7 @@ import styles from "./TextField.module.scss";
 import Icon from "../Icons/Icon";
 
 interface ITextfieldProps {
-	name: string;
+	// name: string;
 	label?: string;
 	error?: FieldError;
 	placeholder?: string;
