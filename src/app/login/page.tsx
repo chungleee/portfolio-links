@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FunctionComponent } from "react";
+import Link from "next/link";
 
 const loginSchema = z.object({
 	email: z
@@ -55,6 +56,10 @@ const Login: FunctionComponent = () => {
 					/>
 					<Button variant='default'>Login</Button>
 				</form>
+			</section>
+			<section>
+				<p>Don't have an account?</p>
+				<Link href='/register'>Create account</Link>
 			</section>
 		</main>
 	);
