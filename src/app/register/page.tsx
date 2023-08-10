@@ -9,8 +9,13 @@ import Link from "next/link";
 
 const schema = z
 	.object({
-		email: z.string().email({ message: "Invalid email address" }).trim(),
-		password: z.string().min(8).max(64),
+		email: z
+			.string()
+			.min(1, { message: "Can't be empty" })
+			.email({ message: "Invalid email address" })
+			.trim()
+			.toLowerCase(),
+		password: z.string().min(8, { message: "Please check again" }).max(64),
 		confirm_password: z.string(),
 	})
 	.refine(
