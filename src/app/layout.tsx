@@ -9,7 +9,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={styles.root_layout} style={{ height: "100vh" }}>
+			<body className={styles.root_layout}>
 				<div className={styles.banner}>
 					<LogoBanner />
 				</div>

@@ -2,6 +2,7 @@
 
 .root_layout {
 	padding: 2rem 1.5rem;
+	height: 100dvh;
 
 	.banner {
 		@media (min-width: variables.$breakpoint-tablet) {
