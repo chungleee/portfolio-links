@@ -1,4 +1,5 @@
 "use client";
+import styles from "./page.module.scss";
 import TextField from "@/components/common/TextField/TextField";
 import Button from "@/components/common/Button/Button";
 import { useForm } from "react-hook-form";
@@ -32,7 +33,7 @@ const Login: FunctionComponent = () => {
 		console.log(data);
 	};
 	return (
-		<main>
+		<main className={styles.login_page}>
 			<section>
 				<p>Add your details below to get back into the app</p>
 				<h2>Login</h2>

@@ -1,0 +1,31 @@
+@use "../variables";
+
+.login_page {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1.5rem;
+	height: 100%;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+
+	section {
+		p {
+			color: variables.$grey;
+		}
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		row-gap: 1.5rem;
+	}
+
+	section:last-of-type {
+		text-align: center;
+
+		a {
+			text-decoration: none;
+			color: variables.$purple;
+		}
+	}
+}
