@@ -1,13 +1,21 @@
 "use client";
+import styles from "./page.module.scss";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import TextField from "@/components/common/TextField/TextField";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Button from "@/components/common/Button/Button";
+import Link from "next/link";
 
 const schema = z
 	.object({
-		email: z.string().email({ message: "Invalid email address" }).trim(),
-		password: z.string().min(8).max(64),
+		email: z
+			.string()
+			.min(1, { message: "Can't be empty" })
+			.email({ message: "Invalid email address" })
+			.trim()
+			.toLowerCase(),
+		password: z.string().min(8, { message: "Please check again" }).max(64),
 		confirm_password: z.string(),
 	})
 	.refine(
@@ -36,13 +44,16 @@ const Register = () => {
 	};
 
 	return (
-		<main>
+		<main className={styles.register_page}>
 			<section>
 				<p>Let's get you started sharing your links!</p>
 				<h2>Create account</h2>
 			</section>
 			<section>
-				<form onSubmit={handleSubmit(onFormSubmit)}>
+				<form
+					className={styles.register_page__form}
+					onSubmit={handleSubmit(onFormSubmit)}
+				>
 					<TextField
 						{...register("email")}
 						name='email'
@@ -59,6 +70,7 @@ const Register = () => {
 						type='password'
 						label='password'
 						placeholder='At least 8 characters'
+						className={styles.form_textfield}
 					/>
 					<TextField
 						{...register("confirm_password")}
@@ -69,8 +81,12 @@ const Register = () => {
 						label='confirm password'
 						placeholder='At least 8 characters'
 					/>
-					<input type='submit' />
+					<Button variant='default'>Create new account</Button>
 				</form>
+			</section>
+			<section>
+				<p>Already have an account?</p>
+				<Link href='/login'>Login</Link>
 			</section>
 		</main>
 	);

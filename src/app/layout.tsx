@@ -9,8 +9,10 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={styles.root_layout}>
-				<LogoBanner />
+			<body className={styles.root_layout} style={{ height: "100vh" }}>
+				<div className={styles.banner}>
+					<LogoBanner />
+				</div>
 				{children}
 			</body>
 		</html>

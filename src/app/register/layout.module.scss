@@ -1,0 +1,17 @@
+@use "../variables";
+
+.register_layout {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+
+	@media (min-width: variables.$breakpoint-tablet) {
+		width: 70%;
+		margin: 0 auto;
+	}
+
+	@media (min-width: variables.$breakpoint-desktop) {
+		width: 30%;
+	}
+}

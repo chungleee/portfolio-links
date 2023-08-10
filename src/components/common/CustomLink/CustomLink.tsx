@@ -5,8 +5,8 @@ import Icon from "../Icons/Icon";
 
 interface ICustomLinkProps {
 	href: string;
-	name: string;
-	isActive: boolean;
+	name?: string;
+	isActive?: boolean;
 }
 const CustomLink: FunctionComponent<ICustomLinkProps> = ({
 	href,
