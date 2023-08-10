@@ -1,6 +1,4 @@
-import LogoBanner from "@/components/common/LogoBanner/LogoBanner";
 import "./global.scss";
-import styles from "./layout.module.scss";
 
 export default function RootLayout({
 	children,
@@ -9,12 +7,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={styles.root_layout} style={{ height: "100vh" }}>
-				<div className={styles.banner}>
-					<LogoBanner />
-				</div>
-				{children}
-			</body>
+			<body>{children}</body>
 		</html>
 	);
 }

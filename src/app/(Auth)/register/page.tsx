@@ -56,7 +56,7 @@ const Register = () => {
 				>
 					<TextField
 						{...register("email")}
-						name='email'
+						// name='email'
 						error={errors.email}
 						iconVariant='mail'
 						label='email'
@@ -64,7 +64,7 @@ const Register = () => {
 					/>
 					<TextField
 						{...register("password")}
-						name='password'
+						// name='password'
 						error={errors.password}
 						iconVariant='lock'
 						type='password'
@@ -74,7 +74,7 @@ const Register = () => {
 					/>
 					<TextField
 						{...register("confirm_password")}
-						name='confirm_password'
+						// name='confirm_password'
 						error={errors.confirm_password}
 						iconVariant='lock'
 						type='password'
