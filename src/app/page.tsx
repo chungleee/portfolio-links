@@ -1,12 +1,7 @@
+import { redirect } from "next/navigation";
+
 const Home = () => {
-	return (
-		<main>
-			<section>
-				<p>Let's get you started sharing your links!</p>
-				<h2>Create account</h2>
-			</section>
-		</main>
-	);
+	redirect("/login");
 };
 
 export default Home;
