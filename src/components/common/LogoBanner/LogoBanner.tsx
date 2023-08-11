@@ -1,7 +1,7 @@
 import Icon from "../Icons/Icon";
 import styles from "./Logo.module.scss";
 
-const Logo = () => {
+export const Logo = () => {
 	return (
 		<div className={styles.logo__icon}>
 			<Icon variant='link' />

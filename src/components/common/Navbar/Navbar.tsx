@@ -1,13 +1,16 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { FunctionComponent } from "react";
+import { FunctionComponent, ReactNode } from "react";
 import styles from "./Navbar.module.scss";
 import CustomLink from "../CustomLink/CustomLink";
+import { Logo } from "../LogoBanner/LogoBanner";
+import Icon from "../Icons/Icon";
 
-interface INavbarProps {
+export interface INavbarProps {
 	navigationLinks: {
 		href: string;
 		name: string;
+		icon?: ReactNode;
 	}[];
 }
 
@@ -16,18 +19,24 @@ const Navbar: FunctionComponent<INavbarProps> = ({ navigationLinks }) => {
 
 	return (
 		<nav className={styles.navbar}>
-			{navigationLinks.map((link) => {
-				const isActive = pathname === link.href;
+			<div>
+				<span className={`${styles.left_logo} ${styles.navbar_logos}`}>
+					<Logo />
+				</span>
+				{navigationLinks.map((link) => {
+					const isActive = pathname === link.href;
 
-				return (
-					<CustomLink
-						key={link.name}
-						href={link.href}
-						name={link.name}
-						isActive={isActive}
-					/>
-				);
-			})}
+					return (
+						<CustomLink key={link.name} href={link.href} isActive={isActive}>
+							{link.icon}
+							<span className={styles.customlink_name}>{link.name}</span>
+						</CustomLink>
+					);
+				})}
+				<span className={`${styles.right_logo} ${styles.navbar_logos}`}>
+					<Icon variant='eye' />
+				</span>
+			</div>
 		</nav>
 	);
 };

@@ -1,17 +1,16 @@
 import Link from "next/link";
-import { FunctionComponent } from "react";
+import { FunctionComponent, ReactNode } from "react";
 import styles from "./CustomLink.module.scss";
-import Icon from "../Icons/Icon";
 
 interface ICustomLinkProps {
 	href: string;
-	name?: string;
 	isActive?: boolean;
+	children?: ReactNode;
 }
 const CustomLink: FunctionComponent<ICustomLinkProps> = ({
 	href,
-	name,
 	isActive,
+	children,
 }) => {
 	return (
 		<Link
@@ -22,7 +21,7 @@ const CustomLink: FunctionComponent<ICustomLinkProps> = ({
 			}
 			href={href}
 		>
-			<Icon variant='link' /> {name}
+			{children}
 		</Link>
 	);
 };
