@@ -1,0 +1,15 @@
+@use "../variables";
+
+.dashboard_layout {
+	background-color: variables.$purple-light;
+
+	.navbar,
+	main {
+		background-color: variables.$white;
+	}
+
+	main {
+		border-radius: 8px;
+		margin: 1.5rem;
+	}
+}
