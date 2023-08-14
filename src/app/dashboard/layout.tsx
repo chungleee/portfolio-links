@@ -1,3 +1,4 @@
+import styles from "./layout.module.scss";
 import Icon from "@/components/common/Icons/Icon";
 import Navbar from "@/components/common/Navbar/Navbar";
 import { ReactNode } from "react";
@@ -13,8 +14,8 @@ const dashboardLinks = [
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
 	return (
-		<div>
-			<Navbar navigationLinks={dashboardLinks} />
+		<div className={styles.dashboard_layout}>
+			<Navbar navigationLinks={dashboardLinks} className={styles.navbar} />
 			<main>{children}</main>
 		</div>
 	);
