@@ -12,13 +12,17 @@ export interface INavbarProps {
 		name: string;
 		icon?: ReactNode;
 	}[];
+	className?: string;
 }
 
-const Navbar: FunctionComponent<INavbarProps> = ({ navigationLinks }) => {
+const Navbar: FunctionComponent<INavbarProps> = ({
+	navigationLinks,
+	className,
+}) => {
 	const pathname = usePathname();
 
 	return (
-		<nav className={styles.navbar}>
+		<nav className={`${styles.navbar} ${className}`}>
 			<div>
 				<span className={`${styles.left_logo} ${styles.navbar_logos}`}>
 					<Logo />
