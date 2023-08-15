@@ -1,7 +1,7 @@
 @use "../variables";
 
 .dashboard_layout {
-	background-color: variables.$purple-light;
+	background-color: variables.$light-grey;
 
 	.navbar,
 	main {
@@ -9,7 +9,7 @@
 	}
 
 	main {
+		margin: 1rem;
 		border-radius: 8px;
-		margin: 1.5rem;
 	}
 }
