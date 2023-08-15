@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import { FunctionComponent, ReactNode } from "react";
 import styles from "./Navbar.module.scss";
 import CustomLink from "../CustomLink/CustomLink";
-import { Logo } from "../LogoBanner/LogoBanner";
+import LogoBanner, { Logo } from "../LogoBanner/LogoBanner";
 import Icon from "../Icons/Icon";
 
 export interface INavbarProps {
@@ -25,7 +25,7 @@ const Navbar: FunctionComponent<INavbarProps> = ({
 		<nav className={`${styles.navbar} ${className}`}>
 			<div>
 				<span className={`${styles.left_logo} ${styles.navbar_logos}`}>
-					<Logo />
+					<LogoBanner />
 				</span>
 				{navigationLinks.map((link) => {
 					const isActive = pathname === link.href;
@@ -39,6 +39,7 @@ const Navbar: FunctionComponent<INavbarProps> = ({
 				})}
 				<span className={`${styles.right_logo} ${styles.navbar_logos}`}>
 					<Icon variant='eye' />
+					<p>preview</p>
 				</span>
 			</div>
 		</nav>

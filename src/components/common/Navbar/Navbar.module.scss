@@ -19,6 +19,22 @@
 			border: 1px solid variables.$purple;
 			display: flex;
 			align-items: center;
+
+			p {
+				display: none;
+			}
+
+			@media (min-width: variables.$breakpoint-tablet) {
+				svg {
+					display: none;
+				}
+
+				p {
+					display: block;
+					color: variables.$purple;
+					text-transform: capitalize;
+				}
+			}
 		}
 
 		.navbar_logos {
@@ -29,4 +45,8 @@
 
 .customlink_name {
 	display: none;
+
+	@media (min-width: variables.$breakpoint-tablet) {
+		display: block;
+	}
 }
