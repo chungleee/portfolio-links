@@ -5,15 +5,18 @@ interface Props {
 	children: ReactNode;
 	variant: "default" | "secondary";
 	disabled?: boolean;
+	onClick?: () => void;
 }
 
 const Button: FunctionComponent<Props> = ({
 	children,
 	variant = "default",
 	disabled,
+	...props
 }) => {
 	return (
 		<button
+			{...props}
 			disabled={disabled}
 			className={
 				variant === "secondary"
