@@ -27,7 +27,7 @@
 .button_secondary {
 	@extend %button;
 	border: 1px solid variables.$purple;
-	background-color: variables.$light-grey;
+	background-color: inherit;
 	color: variables.$purple;
 
 	&:hover {

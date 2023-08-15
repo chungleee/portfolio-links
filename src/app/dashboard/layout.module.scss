@@ -1,0 +1,27 @@
+@use "../variables";
+
+.dashboard_layout {
+	background-color: variables.$light-grey;
+	display: flex;
+	flex-direction: column;
+	height: 100dvh;
+
+	.navbar,
+	main {
+		background-color: variables.$white;
+	}
+
+	main {
+		margin: 1rem;
+		border-radius: 8px;
+		flex-grow: 1;
+	}
+
+	@media (min-width: variables.$breakpoint-desktop) {
+		main {
+			width: 60%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
