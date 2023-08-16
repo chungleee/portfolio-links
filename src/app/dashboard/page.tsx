@@ -70,9 +70,10 @@ const Dashboard = () => {
 				{fields.length ? (
 					<ul>
 						{fields.map((field, index) => {
+							console.log("field ids: ", field.id);
 							return (
 								<li key={field.id}>
-									<CreateLinksCard />
+									<CreateLinksCard cardIndex={index} remove={remove} />
 								</li>
 							);
 						})}
