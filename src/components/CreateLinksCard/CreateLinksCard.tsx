@@ -2,12 +2,17 @@ import React from "react";
 import styles from "./CreateLinksCard.module.scss";
 import TextField from "../common/TextField/TextField";
 
-const CreateLinksCard = () => {
+type CreateLinkCardProps = {
+	cardIndex: number;
+	remove: (index?: number | number[]) => void;
+};
+
+const CreateLinksCard = ({ cardIndex, remove }: CreateLinkCardProps) => {
 	return (
 		<div className={styles.create_links_card}>
 			<div>
 				<span>link #1</span>
-				<button>remove</button>
+				<button onClick={() => remove(cardIndex)}>remove</button>
 			</div>
 			<TextField
 				label='Project name'
