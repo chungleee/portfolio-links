@@ -4,7 +4,6 @@ import styles from "./page.module.scss";
 import Image from "next/image";
 import ipadIllustration from "../../../public/images/illustration-empty.svg";
 import { useForm, useFieldArray } from "react-hook-form";
-import TextField from "@/components/common/TextField/TextField";
 import CreateLinksCard from "@/components/CreateLinksCard/CreateLinksCard";
 
 const AddLinkInfo = () => {
@@ -29,14 +28,25 @@ const AddLinkInfo = () => {
 	);
 };
 
+type TCreateLinksValues = {
+	foliolinks: {
+		projectName: string;
+		projectLink: string;
+	}[];
+};
+
 const Dashboard = () => {
-	const { control, register } = useForm();
+	const { control, register, handleSubmit } = useForm<TCreateLinksValues>();
 	const { fields, append, remove } = useFieldArray({
-		control,
 		name: "foliolinks",
+		control,
 	});
 
 	console.log("fields length: ", fields.length);
+
+	const save = (data: TCreateLinksValues) => {
+		console.log("data: ", data);
+	};
 
 	return (
 		<div className={styles.dashboard}>
@@ -73,7 +83,11 @@ const Dashboard = () => {
 			</section>
 
 			<section>
-				<Button disabled variant='default'>
+				<Button
+					onClick={handleSubmit(save)}
+					disabled={fields.length ? false : true}
+					variant='default'
+				>
 					Save
 				</Button>
 			</section>
