@@ -4,31 +4,52 @@ import styles from "./TextField.module.scss";
 import Icon from "../Icons/Icon";
 
 interface ITextfieldProps {
-	// name: string;
 	label?: string;
 	error?: FieldError;
 	placeholder?: string;
-	iconVariant: "link" | "mail" | "lock";
+	iconVariant: "link" | "mail" | "lock" | "zap";
 	type?: "text" | string;
 	className?: string;
+	inputClassName?: string;
+	labelClassName?: string;
+	inputContainerClassName?: string;
 }
 
 const TextField = forwardRef<HTMLInputElement, ITextfieldProps>(
 	(
-		{ error, iconVariant, type, placeholder, label, className, ...props },
+		{
+			error,
+			iconVariant,
+			type,
+			placeholder,
+			label,
+			className,
+			inputClassName,
+			labelClassName,
+			inputContainerClassName,
+			...props
+		},
 		ref
 	) => {
 		return (
 			<div className={className}>
-				<label className={styles.label}>
+				<label className={`${styles.label} ${labelClassName}`}>
 					{label}
 					<div
 						className={
-							error ? `${styles.textfield} ${styles.error}` : styles.textfield
+							error
+								? `${styles.textfield} ${inputContainerClassName} ${styles.error}`
+								: `${styles.textfield} ${inputContainerClassName}`
 						}
 					>
 						<Icon variant={iconVariant} className={styles.textfield_icon} />
-						<input ref={ref} {...props} type={type} placeholder={placeholder} />
+						<input
+							className={inputClassName}
+							ref={ref}
+							{...props}
+							type={type}
+							placeholder={placeholder}
+						/>
 						{error?.message && (
 							<small className={styles.error_message}>{error.message}</small>
 						)}
