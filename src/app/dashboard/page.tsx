@@ -5,6 +5,29 @@ import Image from "next/image";
 import ipadIllustration from "../../../public/images/illustration-empty.svg";
 import { useForm, useFieldArray } from "react-hook-form";
 import TextField from "@/components/common/TextField/TextField";
+import CreateLinksCard from "@/components/CreateLinksCard/CreateLinksCard";
+
+const AddLinkInfo = () => {
+	return (
+		<div className={styles.dashboard_create__container_add__link}>
+			<div>
+				<Image
+					src={ipadIllustration}
+					alt='Illustration of a mobile device'
+					className={styles.dashboard_create__container_add__link__image}
+				/>
+			</div>
+			<div>
+				<p>
+					Use the "Add new link" button to get started. Once you have more than
+					one link, you can reorder and edit them. We're here to help you share
+					your profiles with everyone!
+				</p>
+				<h2>Let's get you started</h2>
+			</div>
+		</div>
+	);
+};
 
 const Dashboard = () => {
 	const { control, register } = useForm();
@@ -12,6 +35,9 @@ const Dashboard = () => {
 		control,
 		name: "foliolinks",
 	});
+
+	console.log("fields length: ", fields.length);
+
 	return (
 		<div className={styles.dashboard}>
 			<section>
@@ -31,35 +57,19 @@ const Dashboard = () => {
 			</section>
 
 			<section className={styles.dashboard_create__container}>
-				<div className={styles.dashboard_create__container_add__link}>
-					{/* add link cards go here */}
-					{fields &&
-						fields.map((field, index) => {
+				{fields.length ? (
+					<ul>
+						{fields.map((field, index) => {
 							return (
-								<TextField
-									key={field.id}
-									label='Project name'
-									iconVariant='link'
-									{...register(`foliolinks.${index}.value`)}
-								/>
+								<li key={field.id}>
+									<CreateLinksCard />
+								</li>
 							);
 						})}
-					<div>
-						<Image
-							src={ipadIllustration}
-							alt='Illustration of a mobile device'
-							className={styles.dashboard_create__container_add__link__image}
-						/>
-					</div>
-					<div>
-						<p>
-							Use the "Add new link" button to get started. Once you have more
-							than one link, you can reorder and edit them. We're here to help
-							you share your profiles with everyone!
-						</p>
-						<h2>Let's get you started</h2>
-					</div>
-				</div>
+					</ul>
+				) : (
+					<AddLinkInfo />
+				)}
 			</section>
 
 			<section>
