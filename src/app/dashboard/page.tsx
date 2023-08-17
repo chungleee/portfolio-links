@@ -5,6 +5,8 @@ import Image from "next/image";
 import ipadIllustration from "../../../public/images/illustration-empty.svg";
 import { useForm, useFieldArray } from "react-hook-form";
 import CreateLinksCard from "@/components/CreateLinksCard/CreateLinksCard";
+import { useRef } from "react";
+import { flushSync } from "react-dom";
 
 const AddLinkInfo = () => {
 	return (
@@ -36,6 +38,8 @@ type TCreateLinksValues = {
 };
 
 const Dashboard = () => {
+	const ulRef = useRef<HTMLUListElement | null>(null);
+
 	const { control, register, handleSubmit } = useForm<TCreateLinksValues>();
 	const { fields, append, remove } = useFieldArray({
 		name: "foliolinks",
@@ -44,7 +48,15 @@ const Dashboard = () => {
 
 	console.log("fields length: ", fields.length);
 
-	const save = (data: TCreateLinksValues) => {
+	const handleAddNewLink = () => {
+		flushSync(() => {
+			append({ projectName: "", projectLink: "" });
+		});
+
+		ulRef.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" });
+	};
+
+	const handleSave = (data: TCreateLinksValues) => {
 		console.log("data: ", data);
 	};
 
@@ -56,36 +68,33 @@ const Dashboard = () => {
 					world!
 				</p>
 				<h2>Customize your links</h2>
-				<Button
-					onClick={() => {
-						append({ projectName: "", projectLink: "" });
-					}}
-					variant='secondary'
-				>
+				<Button onClick={handleAddNewLink} variant='secondary'>
 					+ Add new link
 				</Button>
 			</section>
 
 			<section className={styles.dashboard_create__container}>
-				{fields.length ? (
-					<ul>
-						{fields.map((field, index) => {
-							console.log("field ids: ", field.id);
-							return (
-								<li key={field.id}>
-									<CreateLinksCard cardIndex={index} remove={remove} />
-								</li>
-							);
-						})}
-					</ul>
-				) : (
-					<AddLinkInfo />
-				)}
+				<ul ref={ulRef}>
+					{fields.length ? (
+						<>
+							{fields.map((field, index) => {
+								console.log("field ids: ", field.id);
+								return (
+									<li key={field.id}>
+										<CreateLinksCard cardIndex={index} remove={remove} />
+									</li>
+								);
+							})}
+						</>
+					) : (
+						<AddLinkInfo />
+					)}
+				</ul>
 			</section>
 
 			<section>
 				<Button
-					onClick={handleSubmit(save)}
+					onClick={handleSubmit(handleSave)}
 					disabled={fields.length ? false : true}
 					variant='default'
 				>
