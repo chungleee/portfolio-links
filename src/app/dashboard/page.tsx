@@ -1,4 +1,5 @@
 "use client";
+import * as z from "zod";
 import Button from "@/components/common/Button/Button";
 import styles from "./page.module.scss";
 import Image from "next/image";
@@ -7,6 +8,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import CreateLinksCard from "@/components/CreateLinksCard/CreateLinksCard";
 import { useRef } from "react";
 import { flushSync } from "react-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const AddLinkInfo = () => {
 	return (
@@ -30,23 +32,40 @@ const AddLinkInfo = () => {
 	);
 };
 
-type TCreateLinksValues = {
-	foliolinks: {
-		projectName: string;
-		projectLink: string;
-	}[];
-};
+const schema = z.object({
+	foliolinks: z
+		.object({
+			projectName: z
+				.string()
+				.min(1, { message: "Project name is required" })
+				.trim(),
+			projectLink: z
+				.string()
+				.url()
+				.min(1, { message: "URL is required" })
+				.trim(),
+		})
+		.array(),
+});
+
+export type TCreateLinksValues = z.infer<typeof schema>;
 
 const Dashboard = () => {
 	const ulRef = useRef<HTMLUListElement | null>(null);
 
-	const { control, register, handleSubmit } = useForm<TCreateLinksValues>();
+	const {
+		control,
+		handleSubmit,
+		register,
+		formState: { errors },
+	} = useForm<TCreateLinksValues>({
+		resolver: zodResolver(schema),
+	});
+
 	const { fields, append, remove } = useFieldArray({
 		name: "foliolinks",
 		control,
 	});
-
-	console.log("fields length: ", fields.length);
 
 	const handleAddNewLink = () => {
 		flushSync(() => {
@@ -78,10 +97,14 @@ const Dashboard = () => {
 					{fields.length ? (
 						<>
 							{fields.map((field, index) => {
-								console.log("field ids: ", field.id);
 								return (
 									<li key={field.id}>
-										<CreateLinksCard cardIndex={index} remove={remove} />
+										<CreateLinksCard
+											cardIndex={index}
+											remove={remove}
+											errors={errors.foliolinks?.[index]}
+											register={register}
+										/>
 									</li>
 								);
 							})}
@@ -95,6 +118,7 @@ const Dashboard = () => {
 			<section>
 				<Button
 					onClick={handleSubmit(handleSave)}
+					type='submit'
 					disabled={fields.length ? false : true}
 					variant='default'
 				>
