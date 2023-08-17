@@ -6,17 +6,20 @@ interface Props {
 	variant: "default" | "secondary";
 	disabled?: boolean;
 	onClick?: () => void;
+	type?: "submit" | "button" | "reset" | undefined;
 }
 
 const Button: FunctionComponent<Props> = ({
 	children,
 	variant = "default",
 	disabled,
+	type,
 	...props
 }) => {
 	return (
 		<button
 			{...props}
+			type={type}
 			disabled={disabled}
 			className={
 				variant === "secondary"
