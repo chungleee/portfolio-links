@@ -11,7 +11,7 @@ const CreateLinksCard = ({ cardIndex, remove }: CreateLinkCardProps) => {
 	return (
 		<div className={styles.create_links_card}>
 			<div>
-				<span>link #1</span>
+				<span>link #{`${cardIndex + 1}`}</span>
 				<button onClick={() => remove(cardIndex)}>remove</button>
 			</div>
 			<TextField
