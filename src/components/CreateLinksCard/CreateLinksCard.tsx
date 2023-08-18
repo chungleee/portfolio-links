@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./CreateLinksCard.module.scss";
 import TextField from "../common/TextField/TextField";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { TCreateLinksValues } from "@/app/dashboard/page";
+import { TCreateLinksValues } from "@/app/dashboard/model";
 
 type FolioLinkErrors = {
 	projectName: string;
@@ -22,8 +22,6 @@ const CreateLinksCard = ({
 	errors,
 	register,
 }: CreateLinkCardProps) => {
-	console.log("errors: ", errors);
-
 	return (
 		<div className={styles.create_links_card}>
 			<div>

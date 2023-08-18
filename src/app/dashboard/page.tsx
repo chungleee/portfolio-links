@@ -1,5 +1,4 @@
 "use client";
-import * as z from "zod";
 import Button from "@/components/common/Button/Button";
 import styles from "./page.module.scss";
 import Image from "next/image";
@@ -9,6 +8,7 @@ import CreateLinksCard from "@/components/CreateLinksCard/CreateLinksCard";
 import { useRef } from "react";
 import { flushSync } from "react-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { TCreateLinksValues, createLinkSchema } from "./model";
 
 const AddLinkInfo = () => {
 	return (
@@ -32,24 +32,6 @@ const AddLinkInfo = () => {
 	);
 };
 
-const schema = z.object({
-	foliolinks: z
-		.object({
-			projectName: z
-				.string()
-				.min(1, { message: "Project name is required" })
-				.trim(),
-			projectLink: z
-				.string()
-				.url()
-				.min(1, { message: "URL is required" })
-				.trim(),
-		})
-		.array(),
-});
-
-export type TCreateLinksValues = z.infer<typeof schema>;
-
 const Dashboard = () => {
 	const ulRef = useRef<HTMLUListElement | null>(null);
 
@@ -59,7 +41,7 @@ const Dashboard = () => {
 		register,
 		formState: { errors },
 	} = useForm<TCreateLinksValues>({
-		resolver: zodResolver(schema),
+		resolver: zodResolver(createLinkSchema),
 	});
 
 	const { fields, append, remove } = useFieldArray({
