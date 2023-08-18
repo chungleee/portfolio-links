@@ -15,8 +15,10 @@ const dashboardLinks = [
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
 	return (
 		<div className={styles.dashboard_layout}>
-			<Navbar navigationLinks={dashboardLinks} className={styles.navbar} />
-			<main>{children}</main>
+			<div>
+				<Navbar navigationLinks={dashboardLinks} className={styles.navbar} />
+				<main>{children}</main>
+			</div>
 		</div>
 	);
 };
