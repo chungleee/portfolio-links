@@ -22,9 +22,21 @@ const Profile = () => {
 				</div>
 
 				<div className={styles.profile__form_section__personal_deets}>
-					<TextField label='First name' type='text' />
-					<TextField label='Last name' type='text' />
-					<TextField label='Email' type='email' />
+					<TextField
+						inputContainerClassName={styles.textfields}
+						label='First name'
+						type='text'
+					/>
+					<TextField
+						inputContainerClassName={styles.textfields}
+						label='Last name'
+						type='text'
+					/>
+					<TextField
+						inputContainerClassName={styles.textfields}
+						label='Email'
+						type='email'
+					/>
 				</div>
 			</form>
 		</div>

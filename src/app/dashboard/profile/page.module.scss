@@ -27,7 +27,6 @@
 			display: flex;
 			flex-direction: column;
 			row-gap: 1rem;
-			color: variables.$grey;
 
 			input[type="file"] {
 				display: none;
@@ -53,6 +52,10 @@
 		&__personal_deets {
 			@include form-container();
 			row-gap: 1rem;
+
+			.textfields {
+				background-color: variables.$white;
+			}
 		}
 	}
 }
