@@ -21,7 +21,7 @@ export type Variants =
 	| "zap";
 
 export interface IIconProps {
-	variant: Variants;
+	variant?: Variants;
 	className?: string;
 }
 
