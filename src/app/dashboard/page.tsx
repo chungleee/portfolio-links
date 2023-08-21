@@ -10,28 +10,6 @@ import { flushSync } from "react-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TCreateLinksValues, createLinkSchema } from "./model";
 
-const AddLinkInfo = () => {
-	return (
-		<div className={styles.dashboard_create__container_add__link}>
-			<div>
-				<Image
-					src={ipadIllustration}
-					alt='Illustration of a mobile device'
-					className={styles.dashboard_create__container_add__link__image}
-				/>
-			</div>
-			<div>
-				<p>
-					Use the "Add new link" button to get started. Once you have more than
-					one link, you can reorder and edit them. We're here to help you share
-					your profiles with everyone!
-				</p>
-				<h2>Let's get you started</h2>
-			</div>
-		</div>
-	);
-};
-
 const Dashboard = () => {
 	const ulRef = useRef<HTMLUListElement | null>(null);
 
@@ -107,6 +85,28 @@ const Dashboard = () => {
 					Save
 				</Button>
 			</section>
+		</div>
+	);
+};
+
+const AddLinkInfo = () => {
+	return (
+		<div className={styles.dashboard_create__container_add__link}>
+			<div>
+				<Image
+					src={ipadIllustration}
+					alt='Illustration of a mobile device'
+					className={styles.dashboard_create__container_add__link__image}
+				/>
+			</div>
+			<div>
+				<p>
+					Use the "Add new link" button to get started. Once you have more than
+					one link, you can reorder and edit them. We're here to help you share
+					your profiles with everyone!
+				</p>
+				<h2>Let's get you started</h2>
+			</div>
 		</div>
 	);
 };
