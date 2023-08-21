@@ -1,0 +1,26 @@
+@use "../../variables";
+
+.profile {
+	padding: 1.5rem;
+
+	&__intro {
+		p {
+			color: variables.$grey;
+		}
+	}
+
+	&__form_section {
+		@mixin form-container {
+			background-color: variables.$light-grey;
+			display: flex;
+			flex-direction: column;
+			padding: 1.25rem;
+			border-radius: 8px;
+		}
+
+		&__personal_deets {
+			@include form-container();
+			row-gap: 1rem;
+		}
+	}
+}
