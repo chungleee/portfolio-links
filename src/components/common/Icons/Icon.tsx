@@ -8,6 +8,7 @@ import {
 	FiUser,
 	FiEye,
 	FiZap,
+	FiImage,
 } from "react-icons/fi";
 
 export type Variants =
@@ -18,7 +19,8 @@ export type Variants =
 	| "up-arrow"
 	| "user"
 	| "eye"
-	| "zap";
+	| "zap"
+	| "image";
 
 export interface IIconProps {
 	variant?: Variants;
@@ -49,6 +51,10 @@ const Icon: FunctionComponent<IIconProps> = ({ variant, ...props }) => {
 	}
 	if (variant === "zap") {
 		return <FiZap {...props} />;
+	}
+
+	if (variant === "image") {
+		return <FiImage {...props} />;
 	}
 
 	return null;
