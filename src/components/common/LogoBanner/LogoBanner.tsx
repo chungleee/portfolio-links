@@ -1,5 +1,5 @@
 import Icon from "../Icons/Icon";
-import styles from "./Logo.module.scss";
+import styles from "./LogoBanner.module.scss";
 
 export const Logo = () => {
 	return (
@@ -9,11 +9,13 @@ export const Logo = () => {
 	);
 };
 
-const LogoBanner = () => {
+const LogoBanner = ({ logoTextClassName }: { logoTextClassName?: string }) => {
 	return (
 		<div className={styles.logo}>
 			<Logo />
-			<span className={styles.logo__text}>foliolinks</span>
+			<span className={`${styles.logo__text} ${logoTextClassName}`}>
+				foliolinks
+			</span>
 		</div>
 	);
 };
