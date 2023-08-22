@@ -28,16 +28,19 @@ const Profile = () => {
 
 				<div className={styles.profile__form_section__personal_deets}>
 					<TextField
+						labelClassName={styles.textfields_layout}
 						inputContainerClassName={styles.textfields}
 						label='First name'
 						type='text'
 					/>
 					<TextField
+						labelClassName={styles.textfields_layout}
 						inputContainerClassName={styles.textfields}
 						label='Last name'
 						type='text'
 					/>
 					<TextField
+						labelClassName={styles.textfields_layout}
 						inputContainerClassName={styles.textfields}
 						label='Email'
 						type='email'
