@@ -1,6 +1,7 @@
 import TextField from "@/components/common/TextField/TextField";
 import styles from "./page.module.scss";
 import Icon from "@/components/common/Icons/Icon";
+import Button from "@/components/common/Button/Button";
 
 const Profile = () => {
 	return (
@@ -38,6 +39,12 @@ const Profile = () => {
 						type='email'
 					/>
 				</div>
+
+				<section className={styles.save_button}>
+					<Button variant='default' type='submit'>
+						Save
+					</Button>
+				</section>
 			</form>
 		</div>
 	);
