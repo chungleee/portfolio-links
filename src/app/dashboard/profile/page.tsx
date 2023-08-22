@@ -14,12 +14,16 @@ const Profile = () => {
 			<form className={styles.profile__form_section}>
 				<div className={styles.profile__form_section__image_upload}>
 					<p>Profile picture</p>
-					<label>
-						<Icon variant='image' />
-						+ Upload Image
-						<input type='file' />
-					</label>
-					<small>Image must be below 5MB. Use WebP, PNG or JPG formats.</small>
+					<div>
+						<label>
+							<Icon variant='image' />
+							+ Upload Image
+							<input type='file' />
+						</label>
+						<small>
+							Image must be below 5MB. Use WebP, PNG or JPG formats.
+						</small>
+					</div>
 				</div>
 
 				<div className={styles.profile__form_section__personal_deets}>

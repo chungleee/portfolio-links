@@ -28,6 +28,12 @@
 			flex-direction: column;
 			row-gap: 1rem;
 
+			> div {
+				display: flex;
+				flex-direction: column;
+				row-gap: 1rem;
+			}
+
 			input[type="file"] {
 				display: none;
 			}
@@ -46,6 +52,26 @@
 				justify-content: center;
 				row-gap: 0.5rem;
 				width: 200px;
+			}
+
+			@media (min-width: variables.$breakpoint-tablet) {
+				flex-direction: row;
+				align-items: center;
+
+				> p {
+					flex: 50%;
+				}
+
+				> div {
+					flex-direction: row;
+					align-items: center;
+
+					small {
+						margin-left: auto;
+						width: 30%;
+						word-wrap: break-word;
+					}
+				}
 			}
 		}
 
