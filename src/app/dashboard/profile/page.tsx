@@ -7,13 +7,7 @@ import Icon from "@/components/common/Icons/Icon";
 import Button from "@/components/common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const ACCEPTED_FORMATS = [
-	"application/x-photoshop",
-	"image/jpg",
-	"image/jpeg",
-	"image/webp",
-	"image/png",
-];
+const ACCEPTED_FORMATS = ["image/jpg", "image/jpeg", "image/webp", "image/png"];
 
 const MAX_FILE_SIZE = 5000000;
 
@@ -29,29 +23,39 @@ const profileSchema = z.object({
 		.refine((files: FileList) => {
 			return files[0]?.size <= MAX_FILE_SIZE;
 		}, "File needs to be 5MB or less"),
-	firstName: z.string(),
-	lastName: z.string(),
-	email: z.string(),
+	firstName: z.string().min(1, { message: "Field is required" }).trim(),
+	lastName: z.string().min(1, { message: "Field is required" }).trim(),
+	email: z
+		.string()
+		.transform((value) => {
+			if (!value) return;
+			return value;
+		})
+		.pipe(
+			z
+				.string()
+				.email({ message: "Invalie email address" })
+				.trim()
+				.toLowerCase()
+				.optional()
+		),
 });
 
-type TProfileValues = z.infer<typeof profileSchema>;
+type TProfileFormValues = z.infer<typeof profileSchema>;
 
 const Profile = () => {
 	const {
 		handleSubmit,
 		register,
-		watch,
 		formState: { errors },
-	} = useForm<TProfileValues>({
+	} = useForm<TProfileFormValues>({
 		resolver: zodResolver(profileSchema),
+		mode: "onSubmit",
 	});
 
-	const handleSave = (data: TProfileValues) => {
+	const handleSave = (data: TProfileFormValues) => {
 		console.log("form data: ", data);
 	};
-
-	if (errors) console.log("errors: ", errors);
-	console.log("profile pic: ", watch("profilePic"));
 
 	return (
 		<div className={styles.profile}>
@@ -67,7 +71,11 @@ const Profile = () => {
 						<label>
 							<Icon variant='image' />
 							+ Upload Image
-							<input type='file' {...register("profilePic")} />
+							<input
+								type='file'
+								{...register("profilePic")}
+								accept='image/jpg, image/jpeg, image/webp, image/png'
+							/>
 						</label>
 						<small>
 							Image must be below 5MB. Use WebP, PNG or JPG formats.
@@ -79,16 +87,20 @@ const Profile = () => {
 					<TextField
 						labelClassName={styles.textfields_layout}
 						inputContainerClassName={styles.textfields}
-						label='First name'
+						label='First name *'
 						type='text'
 						{...register("firstName")}
+						error={errors.firstName}
+						placeholder='John'
 					/>
 					<TextField
 						labelClassName={styles.textfields_layout}
 						inputContainerClassName={styles.textfields}
-						label='Last name'
+						label='Last name *'
 						type='text'
 						{...register("lastName")}
+						error={errors.lastName}
+						placeholder='Doe'
 					/>
 					<TextField
 						labelClassName={styles.textfields_layout}
@@ -96,6 +108,8 @@ const Profile = () => {
 						label='Email'
 						type='email'
 						{...register("email")}
+						error={errors.email}
+						placeholder='e.g. johndoe@email.com'
 					/>
 				</div>
 
