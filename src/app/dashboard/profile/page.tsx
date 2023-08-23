@@ -1,47 +1,11 @@
 "use client";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import TextField from "@/components/common/TextField/TextField";
 import styles from "./page.module.scss";
 import Icon from "@/components/common/Icons/Icon";
 import Button from "@/components/common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-const ACCEPTED_FORMATS = ["image/jpg", "image/jpeg", "image/webp", "image/png"];
-
-const MAX_FILE_SIZE = 5000000;
-
-const profileSchema = z.object({
-	profilePic: z
-		.any()
-		.refine((files: FileList) => {
-			return files.length;
-		}, "Please upload an image")
-		.refine((files: FileList) => {
-			return ACCEPTED_FORMATS.includes(files[0]?.type);
-		}, "This format is not accepted")
-		.refine((files: FileList) => {
-			return files[0]?.size <= MAX_FILE_SIZE;
-		}, "File needs to be 5MB or less"),
-	firstName: z.string().min(1, { message: "Field is required" }).trim(),
-	lastName: z.string().min(1, { message: "Field is required" }).trim(),
-	email: z
-		.string()
-		.transform((value) => {
-			if (!value) return;
-			return value;
-		})
-		.pipe(
-			z
-				.string()
-				.email({ message: "Invalie email address" })
-				.trim()
-				.toLowerCase()
-				.optional()
-		),
-});
-
-type TProfileFormValues = z.infer<typeof profileSchema>;
+import { TProfileFormValues, profileSchema } from "../model";
 
 const Profile = () => {
 	const {
@@ -56,6 +20,8 @@ const Profile = () => {
 	const handleSave = (data: TProfileFormValues) => {
 		console.log("form data: ", data);
 	};
+
+	console.log("errors: ", errors);
 
 	return (
 		<div className={styles.profile}>
@@ -80,6 +46,11 @@ const Profile = () => {
 						<small>
 							Image must be below 5MB. Use WebP, PNG or JPG formats.
 						</small>
+						{errors.profilePic && (
+							<small className={styles.error}>
+								{errors.profilePic.message?.toString()}
+							</small>
+						)}
 					</div>
 				</div>
 
