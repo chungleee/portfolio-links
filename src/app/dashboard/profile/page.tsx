@@ -1,5 +1,5 @@
 "use client";
-import React, { ImgHTMLAttributes, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import TextField from "@/components/common/TextField/TextField";
 import styles from "./page.module.scss";
@@ -7,10 +7,10 @@ import Icon from "@/components/common/Icons/Icon";
 import Button from "@/components/common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TProfileFormValues, profileSchema } from "../model";
-import Image from "next/image";
 
 const Profile = () => {
 	const [previewImg, setPreviewImg] = useState<string>("");
+	const labelRef = useRef<HTMLLabelElement>(null);
 
 	const {
 		handleSubmit,
@@ -24,6 +24,13 @@ const Profile = () => {
 	const handleSave = (data: TProfileFormValues) => {
 		console.log("form data: ", data);
 	};
+
+	useEffect(() => {
+		if (labelRef.current) {
+			labelRef.current.style.backgroundImage = `url(${previewImg})`;
+			labelRef.current.style.filter = "grayscale(15%)";
+		}
+	}, [previewImg]);
 
 	console.log("image preview: ", previewImg);
 	console.log("errors: ", errors);
@@ -39,9 +46,16 @@ const Profile = () => {
 				<div className={styles.profile__form_section__image_upload}>
 					<p>Profile picture</p>
 					<div>
-						<label>
-							<Icon variant='image' />
-							+ Upload Image
+						<label ref={labelRef}>
+							<Icon
+								className={previewImg ? styles.uploaded_img_text : ""}
+								variant='image'
+							/>
+							{previewImg ? (
+								<span className={styles.uploaded_img_text}>Change Image</span>
+							) : (
+								<span>+ Upload Image</span>
+							)}
 							<input
 								type='file'
 								{...register("profilePic", {
@@ -53,14 +67,6 @@ const Profile = () => {
 								accept='image/jpg, image/jpeg, image/webp, image/png'
 							/>
 						</label>
-						{previewImg ? (
-							<Image
-								src={previewImg}
-								alt='Preview of uploaded profile picture'
-								width={150}
-								height={150}
-							/>
-						) : null}
 						<small>
 							Image must be below 5MB. Use WebP, PNG or JPG formats.
 						</small>

@@ -45,6 +45,8 @@
 			label {
 				align-items: center;
 				background-color: variables.$purple-light;
+				background-size: contain;
+				background-repeat: no-repeat;
 				border-radius: 8px;
 				color: variables.$purple;
 				cursor: pointer;
@@ -56,6 +58,10 @@
 				justify-content: center;
 				row-gap: 0.5rem;
 				width: 200px;
+			}
+
+			.uploaded_img_text {
+				color: variables.$white;
 			}
 
 			@media (min-width: variables.$breakpoint-tablet) {
