@@ -45,8 +45,9 @@
 			label {
 				align-items: center;
 				background-color: variables.$purple-light;
-				background-size: contain;
+				background-size: cover;
 				background-repeat: no-repeat;
+				background-position: center center;
 				border-radius: 8px;
 				color: variables.$purple;
 				cursor: pointer;
