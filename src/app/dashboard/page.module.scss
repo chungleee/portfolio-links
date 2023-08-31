@@ -40,6 +40,7 @@
 
 			&__image {
 				height: 100px;
+				width: auto;
 			}
 
 			div:last-of-type {
@@ -54,8 +55,12 @@
 	}
 
 	section:last-of-type {
-		border-top: 1px solid variables.$grey;
+		border-top: 1px solid variables.$med-grey;
 		padding-top: 1.5rem;
+		padding-right: 1.5rem;
+		padding-left: 1.5rem;
+		margin-left: -1.5rem;
+		margin-right: -1.5rem;
 		button {
 			width: 100%;
 		}

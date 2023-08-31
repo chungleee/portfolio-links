@@ -25,6 +25,12 @@
 		flex-grow: 1;
 	}
 
+	@media (min-width: variables.$breakpoint-tablet) {
+		main {
+			margin: 2rem;
+		}
+	}
+
 	@media (min-width: variables.$breakpoint-desktop) {
 		main {
 			width: 60%;

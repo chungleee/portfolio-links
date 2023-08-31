@@ -7,7 +7,7 @@ interface ITextfieldProps {
 	label?: string;
 	error?: FieldError;
 	placeholder?: string;
-	iconVariant: "link" | "mail" | "lock" | "zap";
+	iconVariant?: "link" | "mail" | "lock" | "zap";
 	type?: "text" | string;
 	className?: string;
 	inputClassName?: string;
@@ -42,7 +42,9 @@ const TextField = forwardRef<HTMLInputElement, ITextfieldProps>(
 								: `${styles.textfield} ${inputContainerClassName}`
 						}
 					>
-						<Icon variant={iconVariant} className={styles.textfield_icon} />
+						{iconVariant ? (
+							<Icon variant={iconVariant} className={styles.textfield_icon} />
+						) : null}
 						<input
 							className={inputClassName}
 							ref={ref}
