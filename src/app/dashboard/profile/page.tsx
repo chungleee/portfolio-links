@@ -32,9 +32,6 @@ const Profile = () => {
 		}
 	}, [previewImg]);
 
-	console.log("image preview: ", previewImg);
-	console.log("errors: ", errors);
-
 	return (
 		<div className={styles.profile}>
 			<section className={styles.profile__intro}>

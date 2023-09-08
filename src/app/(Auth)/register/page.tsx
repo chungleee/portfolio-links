@@ -1,34 +1,11 @@
 "use client";
 import styles from "./page.module.scss";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import TextField from "@/components/common/TextField/TextField";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "@/components/common/Button/Button";
 import Link from "next/link";
-
-const schema = z
-	.object({
-		email: z
-			.string()
-			.min(1, { message: "Can't be empty" })
-			.email({ message: "Invalid email address" })
-			.trim()
-			.toLowerCase(),
-		password: z.string().min(8, { message: "Please check again" }).max(64),
-		confirm_password: z.string(),
-	})
-	.refine(
-		(data) => {
-			return data.password === data.confirm_password;
-		},
-		{
-			message: "Passwords don't match",
-			path: ["confirm_password"],
-		}
-	);
-
-type TRegisterFormInputs = z.infer<typeof schema>;
+import { TRegisterFormInputs, registerSchema } from "../model";
 
 const Register = () => {
 	const {
@@ -36,7 +13,7 @@ const Register = () => {
 		register,
 		formState: { errors },
 	} = useForm<TRegisterFormInputs>({
-		resolver: zodResolver(schema),
+		resolver: zodResolver(registerSchema),
 	});
 
 	const onFormSubmit = (data: TRegisterFormInputs) => {
