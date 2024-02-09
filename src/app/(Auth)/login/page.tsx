@@ -8,6 +8,7 @@ import { FunctionComponent } from "react";
 import Link from "next/link";
 import { TLoginFormInputs, loginSchema } from "../model";
 import { useMutation } from "@tanstack/react-query";
+import { redirect } from "next/navigation";
 
 const Login: FunctionComponent = () => {
 	const {
@@ -29,8 +30,9 @@ const Login: FunctionComponent = () => {
 		);
 
 		const json = await result.json();
+		const jwt = json.data.session.access_token;
 
-		console.log("json data: ", json);
+		localStorage.setItem("foliolinks_jwt", jwt);
 	};
 
 	const { mutate, isError, isSuccess, isPending } = useMutation({
@@ -38,6 +40,8 @@ const Login: FunctionComponent = () => {
 			return onLoginSubmit(data);
 		},
 	});
+
+	if (isSuccess) redirect("/dashboard");
 
 	return (
 		<main className={styles.login_page}>
