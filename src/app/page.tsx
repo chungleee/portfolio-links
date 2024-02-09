@@ -18,7 +18,6 @@ const Home = () => {
 		} else {
 			router.push("/dashboard");
 		}
-
 		console.log("home");
 	}, [isAuth]);
 };

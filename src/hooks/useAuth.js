@@ -7,18 +7,13 @@ const useAuth = () => {
 		// check localStorage for token
 		const token = localStorage.getItem("foliolinks_jwt");
 
-		console.log("token: ", token);
 		// if no token, isAuth = false
 		if (!token) {
 			setIsAuth(false);
 		} else {
 			setIsAuth(true);
 		}
-
-		console.log("useAuth");
 	}, []);
-
-	console.log("is auth: ", isAuth);
 	return isAuth;
 };
 
