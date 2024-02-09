@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const useAuth = () => {
 	const [isAuth, setIsAuth] = useState();
+	const router = useRouter();
+
 	useEffect(() => {
 		// check localStorage for token
 		const token = localStorage.getItem("foliolinks_jwt");
@@ -14,7 +17,15 @@ const useAuth = () => {
 			setIsAuth(true);
 		}
 	}, []);
-	return isAuth;
+
+	useEffect(() => {
+		if (!isAuth) {
+			router.push("/login");
+		} else {
+			router.push("/dashboard");
+		}
+		console.log("home");
+	}, [isAuth]);
 };
 
 export default useAuth;
