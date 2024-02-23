@@ -7,10 +7,13 @@ const Home = () => {
 	useEffect(() => {
 		const pingServer = async () => {
 			const url = process.env.NEXT_PUBLIC_SERVER;
-			const res = await fetch(`${url}/ping`);
+			const res = await fetch(`${url}/ping`, {
+				method: "GET",
+				credentials: "include",
+			});
 			const json = await res.json();
 
-			setPing(json.ping);
+			console.log(json);
 		};
 
 		pingServer();
