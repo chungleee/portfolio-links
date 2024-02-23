@@ -1,31 +1,22 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+// import { useState } from "react";
+// import { useEffect } from "react";
+// import { useRouter, redirect } from "next/navigation";
 
-const useAuth = () => {
-	const [isAuth, setIsAuth] = useState();
-	const router = useRouter();
+// const useAuth = () => {
+// 	const router = useRouter();
 
-	useEffect(() => {
-		// check localStorage for token
-		const token = localStorage.getItem("foliolinks_jwt");
+// 	useEffect(() => {
+// 		// check localStorage for token
+// 		const token = localStorage.getItem("foliolinks_jwt");
+// 		// if no token, isAuth = false
+// 		if (!token) {
+// 			redirect("/login");
+// 			// router.push("/login");
+// 		} else {
+// 			redirect("/dashboard");
+// 			// router.push("/dashboard");
+// 		}
+// 	}, []);
+// };
 
-		// if no token, isAuth = false
-		if (!token) {
-			setIsAuth(false);
-		} else {
-			setIsAuth(true);
-		}
-	}, []);
-
-	useEffect(() => {
-		if (!isAuth) {
-			router.push("/login");
-		} else {
-			router.push("/dashboard");
-		}
-		console.log("home");
-	}, [isAuth]);
-};
-
-export default useAuth;
+// export default useAuth;
