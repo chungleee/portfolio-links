@@ -2,10 +2,7 @@
 import styles from "./layout.module.scss";
 import Icon from "@/components/common/Icons/Icon";
 import Navbar from "@/components/common/Navbar/Navbar";
-import useAuth from "@/hooks/useAuth";
-// import { redirect } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 
 const dashboardLinks = [
 	{ href: "/dashboard", name: "Links", icon: <Icon variant='link' /> },
@@ -17,8 +14,6 @@ const dashboardLinks = [
 ];
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
-	useAuth();
-
 	return (
 		<div className={styles.dashboard_layout}>
 			<div>
