@@ -21,18 +21,37 @@ const Login: FunctionComponent = () => {
 
 	const onLoginSubmit = async (data: TLoginFormInputs) => {
 		const result = await fetch(
-			"https://foliolinks-api.onrender.com/api/users/auth/login",
+			`${process.env.NEXT_PUBLIC_SERVER}/api/users/auth/login`,
 			{
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(data),
+				credentials: "include",
 			}
 		);
 
 		const json = await result.json();
-		const jwt = json.data.session.access_token;
 
-		localStorage.setItem("foliolinks_jwt", jwt);
+		console.log("result: ", result);
+		console.log("json: ", json);
+
+		// const json = await result.json();
+
+		// console.log("json: ", json);
+
+		// const result = await fetch(
+		// 	"https://foliolinks-api.onrender.com/api/users/auth/login",
+		// 	{
+		// 		method: "POST",
+		// 		headers: { "Content-Type": "application/json" },
+		// 		body: JSON.stringify(data),
+		// 	}
+		// );
+
+		// const json = await result.json();
+		// const jwt = json.data.session.access_token;
+
+		// localStorage.setItem("foliolinks_jwt", jwt);
 	};
 
 	const { mutate, isError, isSuccess, isPending } = useMutation({
