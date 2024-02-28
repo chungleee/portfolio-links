@@ -13,7 +13,7 @@ const Home = () => {
 			});
 			const json = await res.json();
 
-			console.log(json);
+			setPing(json.ping);
 		};
 
 		pingServer();
