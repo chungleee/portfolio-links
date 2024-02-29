@@ -1,17 +1,21 @@
-import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+const protectedPages = ["/dashboard", "/dashboard/profile"];
+
 export const middleware = (request: NextRequest) => {
 	let authCookie = request.cookies.get("foliolinks_auth");
+	const { pathname } = request.nextUrl;
 
 	if (!authCookie) {
 		return NextResponse.redirect(new URL("/login", request.url));
-	} else {
-		return NextResponse.redirect(new URL("/dashboard", request.url));
+	}
+
+	if (protectedPages.includes(pathname)) {
+		return NextResponse.next();
 	}
 };
 
 export const config = {
-	matcher: ["/"],
+	matcher: ["/", "/dashboard", "/dashboard/profile"],
 };
