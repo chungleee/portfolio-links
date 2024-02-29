@@ -1,9 +1,10 @@
+import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export const middleware = (request: NextRequest) => {
 	let authCookie = request.cookies.get("foliolinks_auth");
-	console.log("authCookie: ", authCookie);
+
 	if (!authCookie) {
 		return NextResponse.redirect(new URL("/login", request.url));
 	} else {
@@ -12,5 +13,5 @@ export const middleware = (request: NextRequest) => {
 };
 
 export const config = {
-	matcher: ["/", "/dashboard/:path*"],
+	matcher: ["/"],
 };
