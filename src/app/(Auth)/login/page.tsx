@@ -21,15 +21,17 @@ const Login: FunctionComponent = () => {
 
 	const onLoginSubmit = async (data: TLoginFormInputs) => {
 		try {
-			const result = await fetch(
-				`${process.env.NEXT_PUBLIC_SERVER}/api/users/auth/login`,
-				{
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(data),
-					credentials: "include",
-				}
-			);
+			let url =
+				process.env.NODE_ENV === "production"
+					? process.env.PRODUCTION_SERVER
+					: process.env.NEXT_PUBLIC_SERVER;
+
+			const result = await fetch(`${url}/api/users/auth/login`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(data),
+				credentials: "include",
+			});
 
 			// TODO: set user object somewhere in state
 			const json = await result.json();
