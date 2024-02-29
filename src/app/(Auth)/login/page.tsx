@@ -23,7 +23,7 @@ const Login: FunctionComponent = () => {
 		try {
 			let url =
 				process.env.NODE_ENV === "production"
-					? process.env.PRODUCTION_SERVER
+					? process.env.NEXT_PUBLIC_PRODUCTION_SERVER
 					: process.env.NEXT_PUBLIC_SERVER;
 
 			const result = await fetch(`${url}/api/users/auth/login`, {
