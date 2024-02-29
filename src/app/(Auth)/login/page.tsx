@@ -33,7 +33,7 @@ const Login: FunctionComponent = () => {
 
 			// TODO: set user object somewhere in state
 			const json = await result.json();
-			console.log("json: ", json);
+			console.log(json);
 		} catch (error) {
 			console.log(error);
 		}
