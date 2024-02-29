@@ -8,6 +8,7 @@ import { FunctionComponent } from "react";
 import Link from "next/link";
 import { TLoginFormInputs, loginSchema } from "../model";
 import { useMutation } from "@tanstack/react-query";
+import { redirect } from "next/navigation";
 
 const Login: FunctionComponent = () => {
 	const {
@@ -19,18 +20,23 @@ const Login: FunctionComponent = () => {
 	});
 
 	const onLoginSubmit = async (data: TLoginFormInputs) => {
-		const result = await fetch(
-			"https://foliolinks-api.onrender.com/api/users/auth/login",
-			{
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(data),
-			}
-		);
+		try {
+			const result = await fetch(
+				`${process.env.NEXT_PUBLIC_SERVER}/api/users/auth/login`,
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(data),
+					credentials: "include",
+				}
+			);
 
-		const json = await result.json();
-
-		console.log("json data: ", json);
+			// TODO: set user object somewhere in state
+			const json = await result.json();
+			console.log(json);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const { mutate, isError, isSuccess, isPending } = useMutation({
@@ -38,6 +44,8 @@ const Login: FunctionComponent = () => {
 			return onLoginSubmit(data);
 		},
 	});
+
+	if (isSuccess) redirect("/dashboard");
 
 	return (
 		<main className={styles.login_page}>

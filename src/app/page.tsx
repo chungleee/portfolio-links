@@ -1,7 +1,4 @@
-import { redirect } from "next/navigation";
-
-const Home = () => {
-	redirect("/login");
-};
+"use client";
+const Home = () => {};
 
 export default Home;

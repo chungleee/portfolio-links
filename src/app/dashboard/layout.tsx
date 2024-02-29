@@ -1,3 +1,4 @@
+"use client";
 import styles from "./layout.module.scss";
 import Icon from "@/components/common/Icons/Icon";
 import Navbar from "@/components/common/Navbar/Navbar";
