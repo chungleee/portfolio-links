@@ -26,12 +26,16 @@ const Login: FunctionComponent = () => {
 					? process.env.NEXT_PUBLIC_PRODUCTION_SERVER
 					: process.env.NEXT_PUBLIC_SERVER;
 
-			const result = await fetch(`${url}/api/users/auth/login`, {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(data),
-				credentials: "include",
-			});
+			const result = await fetch(
+				`https://foliolinks-api.onrender.com/api/users/auth/login`,
+				{
+					// const result = await fetch(`${url}/api/users/auth/login`, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(data),
+					credentials: "include",
+				}
+			);
 
 			// TODO: set user object somewhere in state
 			const json = await result.json();
