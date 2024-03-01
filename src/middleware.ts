@@ -7,6 +7,8 @@ export const middleware = (request: NextRequest) => {
 	let authCookie = request.cookies.get("foliolinks_auth");
 	const { pathname } = request.nextUrl;
 
+	console.log("netlify pathname: ", pathname);
+
 	if (!authCookie) {
 		return NextResponse.redirect(new URL("/login", request.url));
 	}
