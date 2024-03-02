@@ -39,6 +39,7 @@ const Login: FunctionComponent = () => {
 
 			// TODO: set user object somewhere in state
 			const json = await result.json();
+
 			console.log(json);
 		} catch (error) {
 			console.log(error);
@@ -65,10 +66,10 @@ const Login: FunctionComponent = () => {
 					</section>
 					<section>
 						<form
-							// onSubmit={handleSubmit(onLoginSubmit)}
-							onSubmit={handleSubmit((data) => {
-								mutate(data);
-							})}
+							onSubmit={handleSubmit(onLoginSubmit)}
+							// onSubmit={handleSubmit((data) => {
+							// 	mutate(data);
+							// })}
 						>
 							<TextField
 								label='email'
